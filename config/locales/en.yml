@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    models:
+      spree/variant_shipping_rate:
+        one: Variant Shipping Rate
+        other: Variant Shipping Rates

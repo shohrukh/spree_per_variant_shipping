@@ -1,0 +1,54 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Variant Shipping Rates'} %>
+
+<% if @variant_shipping_rates.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 5%" />
+      <col style="width: 25%" />
+      <col style="width: 20%" />
+      <col style="width: 20%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
+    </colgroup>
+    <thead data-hook="variant_shipping_rates_header">
+    <tr>
+      <th colspan="2"><%= Spree.t(:variant) %></th>
+      <th><%= Spree.t(:zone) %></th>
+      <th><%= Spree.t(:reference) %></th>
+      <th class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @supplier_products.each do |supplier_product| %>
+      <tr id="<%= spree_dom_id supplier_product %>" data-hook="supplier_products_row" class="<%= cycle('odd', 'even')%>">
+        <td class="no-border">
+          <span class="handle"></span>
+        </td>
+        <td><%= supplier_product.variant.sku %></td>
+        <td class="align-center"><%= supplier_product.supplier.type %></td>
+        <td class="align-center"><%= supplier_product.supplier_reference %></td>
+        <td class="actions">
+          <%= link_to_edit(supplier_product, :no_text => true) %>
+          &nbsp;
+          <%= link_to_delete(supplier_product, :no_text => true) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/variant_shipping_rate')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_product_variant_shipping_rate_path(@product) %>!
+  </div>
+<% end %>
+
+<% content_for :page_actions do %>
+  <ul class="inline-menu" data-hook="toolbar">
+    <li id="new_supplier_product_link" data-hook>
+      <%= link_to_with_icon('icon-plus', Spree.t(:new_variant_shipping_rate), new_admin_product_variant_shipping_rate_path(@product), :'data-update' => 'new_variant_shipping_rate', :class => 'button') %>
+    </li>
+  </ul>
+<% end %>

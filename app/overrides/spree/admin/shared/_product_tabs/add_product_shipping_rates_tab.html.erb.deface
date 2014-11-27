@@ -1,0 +1,5 @@
+<!-- insert_bottom "[data-hook='admin_product_tabs']" -->
+
+<%= content_tag :li, :class => ('active' if current == 'Variant Shipping Rates') do %>
+  <%= link_to_with_icon 'truck', Spree.t(:shipping_rates), admin_product_variant_shipping_rates_url(@product) %>
+<% end if can?(:admin, Spree::Product) %>
