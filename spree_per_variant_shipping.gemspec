@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_per_variant_shipping'
-  s.version     = '2.3.1'
+  s.version     = '2.3.1.beta'
   s.summary     = 'Per variant shipping calculator'
   s.description = 'Per variant shipping calculator'
   s.required_ruby_version = '>= 1.9.3'
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 2.3.1'
+  s.add_dependency 'spree_dropship', '~> 2.3.0'
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'

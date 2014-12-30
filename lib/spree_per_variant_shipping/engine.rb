@@ -16,5 +16,9 @@ module SpreePerVariantShipping
     end
 
     config.to_prepare &method(:activate).to_proc
+
+    initializer 'spree.register.per_variant_shipping_calculators', :after => 'spree.register.calculators' do |app|
+      app.config.spree.calculators.shipping_methods << Spree::Calculator::Shipping::PerVariant::Ground
+    end
   end
 end

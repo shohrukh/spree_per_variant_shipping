@@ -4,3 +4,6 @@ en:
       spree/variant_shipping_rate:
         one: Variant Shipping Rate
         other: Variant Shipping Rates
+  per_variant:
+    shipping:
+      ground: Per Variant Ground
