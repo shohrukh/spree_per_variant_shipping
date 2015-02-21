@@ -36,4 +36,4 @@ Simply add this require statement to your spec_helper:
 require 'spree_per_variant_shipping/factories'
 ```
 
-Copyright (c) 2014 Shohrukh Shoyoqubov, released under the New BSD License
+Copyright (c) 2015 Shohrukh Shoyoqubov, released under the New BSD License

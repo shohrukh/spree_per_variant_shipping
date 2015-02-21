@@ -1,16 +1,14 @@
-<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
-
 <%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => 'Variant Shipping Rates'} %>
 
 <% if @variant_shipping_rates.any? %>
-  <table class="index">
+  <table class="table">
     <colgroup>
-      <col style="width: 5%" />
-      <col style="width: 25%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 15%" />
-      <col style="width: 15%" />
+      <col style="width: 5%"/>
+      <col style="width: 25%"/>
+      <col style="width: 20%"/>
+      <col style="width: 20%"/>
+      <col style="width: 15%"/>
+      <col style="width: 10%"/>
     </colgroup>
     <thead data-hook="variant_shipping_rates_header">
     <tr>
@@ -24,15 +22,14 @@
     </thead>
     <tbody>
     <% @variant_shipping_rates.each do |variant_shipping_rate| %>
-      <tr id="<%= spree_dom_id variant_shipping_rate %>" data-hook="variant_shipping_rates_row" class="<%= cycle('odd', 'even')%>">
-        <td class="align-center"><%= variant_shipping_rate.id %></td>
-        <td class="align-center"><%= variant_shipping_rate.variant.sku %></td>
-        <td class="align-center"><%= variant_shipping_rate.zone.name %></td>
-        <td class="align-center"><%= variant_shipping_rate.ground_rate %></td>
-        <td class="align-center"><%= variant_shipping_rate.standard_rate %></td>
-        <td class="actions">
+      <tr id="<%= spree_dom_id variant_shipping_rate %>" data-hook="variant_shipping_rates_row">
+        <td><%= variant_shipping_rate.id %></td>
+        <td><%= variant_shipping_rate.variant.sku %></td>
+        <td><%= variant_shipping_rate.zone.name %></td>
+        <td><%= variant_shipping_rate.ground_rate %></td>
+        <td><%= variant_shipping_rate.standard_rate %></td>
+        <td class="actions text-right">
           <%= link_to_edit(variant_shipping_rate, :no_text => true) %>
-          &nbsp;
           <%= link_to_delete(variant_shipping_rate, :no_text => true) %>
         </td>
       </tr>
@@ -40,16 +37,12 @@
     </tbody>
   </table>
 <% else %>
-  <div class="alpha twelve columns no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/variant_shipping_rate')) %>,
+  <div class="no-objects-found alert alert-info">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::VariantShippingRate)) %>,
     <%= link_to Spree.t(:add_one), spree.new_admin_product_variant_shipping_rate_path(@product) %>!
   </div>
 <% end %>
 
 <% content_for :page_actions do %>
-  <ul class="inline-menu" data-hook="toolbar">
-    <li id="new_supplier_product_link" data-hook>
-      <%= link_to_with_icon('icon-plus', Spree.t(:new_variant_shipping_rate), new_admin_product_variant_shipping_rate_path(@product), :'data-update' => 'new_variant_shipping_rate', :class => 'button') %>
-    </li>
-  </ul>
+  <%= button_link_to(Spree.t(:new_variant_shipping_rate), spree.new_admin_product_variant_shipping_rate_path(@product), {:icon => 'add', :class => 'btn-success', id: 'new_variant_shipping_rate_link'}) %>
 <% end %>
